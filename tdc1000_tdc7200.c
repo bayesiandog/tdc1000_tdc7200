@@ -11,17 +11,16 @@ void RST_TDC1000(void){   // TDC1000 reset
 
 
 /**
-  * @brief  Write to or read a configuration register of TDC1000
-  * @param  write=1, read=0
+  * @brief  Write to a configuration register of TDC1000
   * @param  Register address
   * @param  Configuration value
   */
 void tdc1000_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data)  // write or read configuration register
 {
    uint8_t Data_Byte_Low    = config_reg_data;
-	if(rw==w)  // read or write
+	
         uint8_t Data_Byte_High  = 0x40|reg;  // 0b01000000 to write to a register
-	else  uint8_t Data_Byte_High  = reg;
+	
 	
   
      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
@@ -83,17 +82,16 @@ void tdc7200_start_meas()
 
 
 /**
-  * @brief  Write to or read a configuration register of TDC7200
-  * @param  write=1, read=0
+  * @brief  Write to a configuration register of TDC7200
   * @param  Register address
   * @param  Configuration value
   */
 void tdc7200_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data)
 {
    uint8_t Data_Byte_Low    = config_reg_data;
-	if(rw==w)
+
         uint8_t Data_Byte_High  = 0x40|reg;
-	else  uint8_t Data_Byte_High  = reg;
+	
 	
      HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
      uint8_t address[2] = {Data_Byte_High, Data_Byte_Low };
