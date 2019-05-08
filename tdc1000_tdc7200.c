@@ -6,7 +6,7 @@
   * @brief  TDC1000 reset
   */
 void RST_TDC1000(void){   // TDC1000 reset
- tdc1000_wr_config_reg (w, 7, 3)    
+ tdc1000_wr_config_reg (w, 7, 3);
 }
 
 
