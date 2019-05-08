@@ -19,7 +19,7 @@ void tdc1000_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data) 
 {
    uint8_t Data_Byte_Low    = config_reg_data;
 	
-        uint8_t Data_Byte_High  = 0x40|reg;  // 0b01000000 to write to a register
+   uint8_t Data_Byte_High  = 0x40|reg;  // 0b01000000 to write to a register
 	
 	
   
@@ -47,7 +47,7 @@ int tdc1000_error_check()
 	    	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 				
 				 
-       if (Result_read==1){
+                         if (Result_read==1){
 				
 				 err=1;
 				
@@ -90,7 +90,7 @@ void tdc7200_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data)
 {
    uint8_t Data_Byte_Low    = config_reg_data;
 
-        uint8_t Data_Byte_High  = 0x40|reg;
+   uint8_t Data_Byte_High  = 0x40|reg;
 	
 	
      HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
@@ -117,7 +117,7 @@ double tdc7200_read_n_bytes(uint8_t n, uint8_t read_opcode)
        HAL_SPI_Transmit(&hspi1, &read_opcode, 1, 1);
        HAL_SPI_Receive(&hspi1, spiData, n, 1);
 	
-     if (n==1){
+                 if (n==1){
 				Result_read = (spiData[0]);
 				}
 		 if (n==3){
