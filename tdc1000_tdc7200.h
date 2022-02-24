@@ -44,25 +44,10 @@
 
 
 void tdc7200_start_meas();
-
 void tdc7200_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data);
-
 double tdc7200_read_n_bytes(uint8_t n, uint8_t read_opcode);
-
 void tdc1000_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data);
-
 void RST_TDC1000(void);
-
 int tdc1000_error_check();
 
-
-
-
-
-
-
 #endif
-
-
-
-
