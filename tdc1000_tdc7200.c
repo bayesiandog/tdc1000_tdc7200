@@ -61,6 +61,7 @@ void tdc7200_start_meas()
 {  
 	uint8_t Data_Byte_Low   = 43;
 	uint8_t Data_Byte_High  = 40;
+	
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
 	uint8_t address[2] = {Data_Byte_High, Data_Byte_Low };
 	HAL_SPI_Transmit(&hspi1, address, 2, 1);
@@ -76,7 +77,6 @@ void tdc7200_start_meas()
 void tdc7200_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data)
 {
 	uint8_t Data_Byte_Low    = config_reg_data;
-
 	uint8_t Data_Byte_High  = 0x40|reg;
 
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
@@ -107,7 +107,7 @@ if (n==3)
 	Result_read = (spiData[0] << 16) |  (spiData[1] << 8) | (spiData[2] << 0);
 
 if (read_opcode==0x11 || read_opcode==0x19 ||  read_opcode==0x13 || read_opcode==0x15 || read_opcode==0x17)
-	Result_read =Result_read >>6;
+	Result_read = Result_read >>6;
 Result=Result_read;
 
 HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_SET);
