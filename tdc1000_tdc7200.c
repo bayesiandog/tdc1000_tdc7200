@@ -107,7 +107,7 @@ double tdc7200_read_n_bytes(uint8_t n, uint8_t read_opcode)
 		Result_read = (spiData[0] << 16) |  (spiData[1] << 8) | (spiData[2] << 0);
 
 	if (read_opcode==0x11 || read_opcode==0x19 ||  read_opcode==0x13 || read_opcode==0x15 || read_opcode==0x17)
-		Result_read = Result_read >>6;
+		Result_read = Result_read >> 6;
 	Result=Result_read;
 
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_SET);
