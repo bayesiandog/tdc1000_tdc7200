@@ -94,23 +94,23 @@ void tdc7200_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data)
   */
 double tdc7200_read_n_bytes(uint8_t n, uint8_t read_opcode)
 {
-uint16_t    Result_read = 0;
-double      Result = 0;
+	uint16_t    Result_read = 0;
+	double      Result = 0;
 
-HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
-HAL_SPI_Transmit(&hspi1, &read_opcode, 1, 1);
-HAL_SPI_Receive(&hspi1, spiData, n, 1);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
+	HAL_SPI_Transmit(&hspi1, &read_opcode, 1, 1);
+	HAL_SPI_Receive(&hspi1, spiData, n, 1);
 
-if (n==1)
-	Result_read = (spiData[0]);
-if (n==3)
-	Result_read = (spiData[0] << 16) |  (spiData[1] << 8) | (spiData[2] << 0);
+	if (n==1)
+		Result_read = (spiData[0]);
+	if (n==3)
+		Result_read = (spiData[0] << 16) |  (spiData[1] << 8) | (spiData[2] << 0);
 
-if (read_opcode==0x11 || read_opcode==0x19 ||  read_opcode==0x13 || read_opcode==0x15 || read_opcode==0x17)
-	Result_read = Result_read >>6;
-Result=Result_read;
+	if (read_opcode==0x11 || read_opcode==0x19 ||  read_opcode==0x13 || read_opcode==0x15 || read_opcode==0x17)
+		Result_read = Result_read >>6;
+	Result=Result_read;
 
-HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_SET);
-return Result;
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_SET);
+	return Result;
 }               
 
