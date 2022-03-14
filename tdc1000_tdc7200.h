@@ -4,7 +4,7 @@
 
 #include "stm32f10x.h"
 
-// TDC1000 registers definitions
+// TDC1000 registers definition
 #define CONFIG_0               0x00
 #define CONFIG_1               0x01
 #define CONFIG_2               0x02
@@ -17,7 +17,7 @@
 #define CLOCK_RATE             0x09
 
 
-// TDC7200 registers definitions
+// TDC7200 registers definition
 #define CONFIG1                0x00
 #define CONFIG2                0x01
 #define INT_STATUS             0x02
