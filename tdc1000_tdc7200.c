@@ -32,10 +32,10 @@ void tdc1000_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data) 
   * @brief  Check error status register
   * @retval error code
   */
-int tdc1000_error_check()
+uint8_t tdc1000_error_check()
 {
 	uint8_t    Result_read = 0;
-	int      Result = 0;
+	
 
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(&hspi1, 0x7, 1, 1);
@@ -43,14 +43,7 @@ int tdc1000_error_check()
 	Result_read = (spiData[0]);
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
-	if (Result_read==1)
-		err=1;
-	else if (Result_read==2)
-		err=2;
-	else if (Result_read==3)
-		err=3;
-
-	return err;
+	return Result_read;
 }                
 
 
