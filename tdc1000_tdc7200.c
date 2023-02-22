@@ -34,16 +34,15 @@ void tdc1000_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data) 
   */
 uint8_t tdc1000_error_check()
 {
-	uint8_t    Result_read = 0;
+	uint8_t    spiData = 0;
 	
 
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(&hspi1, 0x7, 1, 1);
-	HAL_SPI_Receive(&hspi1, spiData, 1, 1);
-	Result_read = (spiData[0]);
+	HAL_SPI_Receive(&hspi1, &spiData, 1, 1);
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
-	return Result_read;
+	return spiData;
 }                
 
 
@@ -87,6 +86,7 @@ void tdc7200_wr_config_reg (uint8_t  rw,  uint8_t reg, uint8_t config_reg_data)
   */
 double tdc7200_read_n_bytes(uint8_t n, uint8_t read_opcode)
 {
+	uint8_t spiData[3];
 	uint16_t    Result_read = 0;
 	double      Result = 0;
 
